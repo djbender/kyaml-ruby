@@ -1,6 +1,6 @@
 # KYAML
 
-Encode Ruby objects as [KYAML](https://kubernetes.io/docs/reference/encodings/kyaml/) — a strict, flow-style YAML subset designed to avoid YAML's ambiguity pitfalls. See the [KEP-5295 proposal](https://github.com/kubernetes/enhancements/blob/master/keps/sig-cli/5295-kyaml/README.md) for full design details.
+Encode and decode Ruby objects as [KYAML](https://kubernetes.io/docs/reference/encodings/kyaml/) — a strict, flow-style YAML subset designed to avoid YAML's ambiguity pitfalls. See the [KEP-5295 proposal](https://github.com/kubernetes/enhancements/blob/master/keps/sig-cli/5295-kyaml/README.md) for full design details.
 
 ## Installation
 
@@ -25,6 +25,12 @@ KYAML.dump({name: "Alice", age: 30})
 
 KYAML.dump([{id: 1}, {id: 2}])
 # => "---\n[{id: 1,}, {id: 2,}]\n"
+
+KYAML.load("---\n\"hello\"\n")
+# => "hello"
+
+KYAML.load(KYAML.dump({name: "Alice"}))
+# => {"name" => "Alice"}
 ```
 
 ## Development
@@ -34,7 +40,7 @@ After checking out the repo, run `bin/setup` to install dependencies. Then, run 
 | Tool             | Purpose                             |
 | ---------------- | ----------------------------------- |
 | `bin/setup`      | Install dependencies                |
-| `bin/rake`       | Run specs + linter (CI default)     |
+| `bin/rake`       | Run specs + linter (local default)  |
 | `bin/rspec`      | Run tests                           |
 | `bin/standardrb` | Lint / autofix with `--fix`         |
 | `bin/console`    | IRB session with KYAML loaded       |
