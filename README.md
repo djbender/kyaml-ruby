@@ -1,6 +1,6 @@
 # KYAML
 
-Encode Ruby objects as KYAML — a strict, flow-style YAML subset designed to avoid YAML's ambiguity pitfalls.
+Encode Ruby objects as [KYAML](https://kubernetes.io/docs/reference/encodings/kyaml/) — a strict, flow-style YAML subset designed to avoid YAML's ambiguity pitfalls. See the [KEP-5295 proposal](https://github.com/kubernetes/enhancements/blob/master/keps/sig-cli/5295-kyaml/README.md) for full design details.
 
 ## Installation
 
