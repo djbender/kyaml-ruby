@@ -8,10 +8,10 @@ Gem::Specification.new do |spec|
   spec.authors = ["Derek Bender"]
   spec.email = ["170351+djbender@users.noreply.github.com"]
 
-  spec.summary = "Encode Ruby objects as KYAML, a strict flow-style YAML subset"
-  spec.description = "KYAML-Ruby encodes Ruby hashes, arrays, and scalars into KYAML — a strict, " \
+  spec.summary = "Encode and decode Ruby objects as KYAML, a strict flow-style YAML subset"
+  spec.description = "KYAML-Ruby encodes and decodes Ruby hashes, arrays, and scalars as KYAML — a strict, " \
     "flow-style YAML subset designed to avoid YAML's ambiguity pitfalls. " \
-    "API mirrors Ruby's YAML module: require 'kyaml' then KYAML.dump(obj)."
+    "API mirrors Ruby's YAML module: KYAML.dump(obj) and KYAML.load(str)."
   spec.homepage = "https://github.com/djbender/kyaml-ruby"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 3.3.0"
