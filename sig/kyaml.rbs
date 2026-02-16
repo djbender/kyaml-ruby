@@ -1,0 +1,24 @@
+module KYAML
+  VERSION: String
+
+  def self.dump: (untyped obj) -> String
+
+  class Encoder
+    def encode: (untyped value, ?depth: Integer) -> String
+
+    private
+
+    def encode_string: (String str) -> String
+    def encode_simple_string: (String str) -> String
+    def encode_multiline_string: (String str) -> String
+    def escape_line: (String line) -> String
+    def encode_hash: (Hash[untyped, untyped] hash, Integer depth) -> String
+    def encode_array: (Array[untyped] array, Integer depth) -> String
+    def encode_cuddled_array: (Array[Hash[untyped, untyped]] array, Integer depth) -> String
+    def encode_key: (untyped key) -> String
+
+    AMBIGUOUS_KEYWORDS: Set[String]
+    NUMERIC_PATTERN: Regexp
+    SAFE_KEY_PATTERN: Regexp
+  end
+end
