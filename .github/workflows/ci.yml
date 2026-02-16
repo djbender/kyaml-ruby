@@ -11,21 +11,52 @@ jobs:
   build:
     runs-on: ubuntu-latest
     name: Ruby ${{ matrix.ruby }}
+    continue-on-error: ${{ matrix.allow-failure || false }}
     strategy:
+      fail-fast: false
       matrix:
         ruby:
           - '3.3'
           - '3.4'
           - '4.0'
+        include:
+          - ruby: head
+            allow-failure: true
 
     steps:
       - uses: actions/checkout@v6.0.2
         with:
           persist-credentials: false
+
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1.288.0
         with:
           ruby-version: ${{ matrix.ruby }}
           bundler-cache: true
+
       - name: Run the default task
         run: bin/rake
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6.0.2
+        with:
+          persist-credentials: false
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1.288.0
+        with:
+          ruby-version: '3.4'
+          bundler-cache: true
+
+      - run: bin/standardrb
+
+  ci:
+    runs-on: ubuntu-slim
+    timeout-minutes: 1
+    needs: [build, lint]
+    if: always()
+    steps:
+      - run: exit 1
+        if: ${{ !success() }}
