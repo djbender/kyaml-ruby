@@ -7,4 +7,10 @@ RSpec::Core::RakeTask.new(:spec)
 
 require "standard/rake"
 
-task default: %i[spec standard]
+task :lint do
+  puts "Running StandardRB..."
+  Rake::Task["standard"].invoke
+  puts "StandardRB passed."
+end
+
+task default: %i[spec lint]
