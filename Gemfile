@@ -9,4 +9,4 @@ gem "irb"
 gem "rake", "~> 13.4"
 gem "rspec", "~> 3.0"
 gem "simplecov", require: false
-gem "standard", "~> 1.56"
+gem "standard", "~> 1.57"
